@@ -35,6 +35,7 @@ root@client-util:/#
 
 6. Start Consumer 1 in new terminal
 $ kafkacat -C -b "kfk1,kfk2,kfk3" -G mygroup mytopic1
+> -G <name> -> run as consumer with consumer group <name>
 
 7. Open another tab in terminal, then exec into client-util shell
 $ kubectl exec -it client-util -n basic-kafka -- bash
@@ -42,6 +43,7 @@ root@client-util:/#
 
 8. Start Consumer 2 in new terminal
 $ kafkacat -C -b "kfk1,kfk2,kfk3" -G mygroup mytopic1
+> When adding the second consumer, rebalance process occure to assign which consumer working with which partition
 
 9. Send some more messages in Producer
 $ message4
@@ -49,6 +51,7 @@ $ message5
 $ message6
 $ message7
 $ message8
+> The message will distributed to difference consumer within the consumer group
 
 10. Check each Consumers will receive new messages
 
