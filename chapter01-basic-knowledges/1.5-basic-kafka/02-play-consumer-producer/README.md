@@ -24,9 +24,12 @@ root@client-util:/#
 
 4. Start Producer using kafkacat, and send some messages
 $ kafkacat -P -b "kfk1,kfk2,kfk3" -t "mytopic"
+> -P -> run command as producer (kafkacat as producer)
+> -b -> Connect to these broker
+> -t -> name of topic
 
 $ message1
-$ message2
+$ message1
 $ message3
 
 5. Open another tab in terminal, and exec into client-util
@@ -35,6 +38,21 @@ root@client-util:/#
 
 6. Start Consumer in the open terminal
 $ kafkacat -C -b "kfk1,kfk2,kfk3" -t "mytopic"
+> -C -> run command as consumer
+
+```
+Output:
+% Reached end of topic mytopic [20] at offset 0
+% Reached end of topic mytopic [11] at offset 0
+% Reached end of topic mytopic [8] at offset 0
+% Reached end of topic mytopic [22] at offset 2
+% Reached end of topic mytopic [35] at offset 1
+message1
+% Reached end of topic mytopic [26] at offset 0
+```
+> [<number>] is the partition number
+> offset 0 -> no message going in to this partition
+> offset <number> -> there is <number> in this partition
 
 7. Exit Consumer by (Ctrl + c)
 
